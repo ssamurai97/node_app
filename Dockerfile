@@ -1,7 +1,9 @@
-FROM node:7
-WORKDIR /app
-COPY package.json /app
-RUN npm install
-COPY . /app
-CMD node ./bin/www
-EXPOSE 8081
+FROM node:10.0.0
+
+RUN mkdir -p /usr/src/node_app
+COPY ./node_app/* /usr/src/node_app/
+WORKDIR /usr/src/node_app
+
+RUN npm install 
+
+CMD node /usr/src/node_app/bin/www
